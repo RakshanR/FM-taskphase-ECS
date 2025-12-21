@@ -1,46 +1,65 @@
 #include <stdio.h>
 int is_prime(int n);
-int main() {
-    int num1, num2, num3;
+int main(){
+    int num1,num2,num3;
     int sum;
     int prime_result;
+
     printf("Enter the first integer: ");
-    scanf("%d", &num1);
-
-    printf("Enter the second integer: ");
-    scanf("%d", &num2);
-    
-    printf("Enter the third integer: ");
-    scanf("%d", &num3);
-
-    sum = num1 + num2 + num3;
-    printf("Sum: %d\n", sum);
-    if (sum % 2 == 0) {
-        printf("1.The sum is Even.\n");
-    } else {
-        printf("1.The sum is Odd.\n");
-    }
-    prime_result = is_prime(sum);
-    if (prime_result == 1) {
-        printf("2.The sum is a Prime number.\n");
-    } else {
-        printf("2.The sum is a Composite number.\n");
-    }
-    return 0;
-}
-int is_prime(int n) {
-    int i;
-    if (n <= 1) {
-        return 0;
-    }
-    if (n == 2) {
+    if(scanf("%d",&num1)!=1){
+        printf("Invalid input! Please enter an integer only.\n");
         return 1;
     }
-    if (n % 2 == 0) {
+
+    printf("Enter the second integer: ");
+    if(scanf("%d",&num2)!=1){
+        printf("Invalid input! Please enter an integer only.\n");
+        return 1;
+    }
+
+    printf("Enter the third integer: ");
+    if(scanf("%d",&num3)!=1){
+        printf("Invalid input! Please enter an integer only.\n");
+        return 1;
+    }
+
+    sum=num1+num2+num3;
+    printf("Sum:%d\n",sum);
+
+    if(sum%2==0){
+        printf("1.The sum is Even.\n");
+    }else{
+        printf("1.The sum is Odd.\n");
+    }
+
+    if(sum<=1){
+        printf("2.The sum is neither Prime nor Composite.\n");
+    }else{
+        prime_result=is_prime(sum);
+        if(prime_result==1){
+            printf("2.The sum is a Prime number.\n");
+        }else{
+            printf("2.The sum is a Composite number.\n");
+        }
+    }
+
+    return 0;
+}
+int is_prime(int n){
+    int i;
+
+    if(n<=1){
         return 0;
     }
-    for (i = 3; i * i <= n; i += 2) {
-        if (n % i == 0) {
+    if(n==2){
+        return 1;
+    }
+    if(n%2==0){
+        return 0;
+    }
+
+    for(i=3;i*i<=n;i+=2){
+        if(n%i==0){
             return 0;
         }
     }
